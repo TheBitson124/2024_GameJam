@@ -25,11 +25,15 @@ namespace DefaultNamespace
 
         public void NextScene()
         {
-            if (SceneManager.GetActiveScene().name == "Transition")
+            if (SceneManager.GetActiveScene().name == "Transition" || SceneManager.GetActiveScene().name == "Main Menu")
             {
                 if (lvl == 0)
                 {
                     SceneManager.LoadScene("Tutorial");
+                }
+                else if(lvl == 2)
+                {
+                    SceneManager.LoadScene("BossRoom");
                 }
                 lvl++;
                 SceneManager.LoadScene("Level" + (lvl-1));
