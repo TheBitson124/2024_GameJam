@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 4e61dad97e007e740a03af6f82e567b4
+  - enabled: 1
+    path: Assets/Scenes/bee_scene.unity
+    guid: 6a7fc531d79dbed4481f7e90b21aa28a
   m_configObjects: {}
