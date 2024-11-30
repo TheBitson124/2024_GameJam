@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class startgamescript : MonoBehaviour {
-    [SerializeField] private string firstLevelName = "";
+    [SerializeField] private string firstLevelName = "Level1";
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space))
         {
