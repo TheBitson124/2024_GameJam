@@ -13,6 +13,7 @@ public class Player_Movement : MonoBehaviour
     private Animator _animator;
 
     [SerializeField] private bool enableGravity;
+    [SerializeField] private bool defaultGravity;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
@@ -25,6 +26,10 @@ public class Player_Movement : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
+        if (defaultGravity = true)
+        {
+            _rb.gravityScale = -4;
+        }
     }
 
     void Update()
