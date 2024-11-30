@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player_Shooting : MonoBehaviour
 {
+    [SerializeField] private bool InstaWeaponUnlock;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject Bullet1Prefab;
     [SerializeField] private GameObject Bullet2Prefab;
@@ -34,7 +35,7 @@ public class Player_Shooting : MonoBehaviour
             isWeapon1 = true;
             gun1.SetActive(true);
         } 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && playerStats.getWeaponUnlock())
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (playerStats.getWeaponUnlock() || InstaWeaponUnlock))
         {
             gun1.SetActive(false);
             isWeapon1 = false;
@@ -65,7 +66,7 @@ public class Player_Shooting : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(shoot2, 0.5F);
+            audioSource.PlayOneShot(shoot2, 0.3F);
             Instantiate(Bullet2Prefab, firePoint.position, firePoint.rotation);
         }
     }

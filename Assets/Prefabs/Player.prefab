@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8708014580909285786}
   - component: {fileID: 1032759747781302837}
   - component: {fileID: 6512769297247095977}
+  - component: {fileID: 4629035235873921239}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9d1ffa34e9e4d40a65646340568d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeGravity: {fileID: 8300000, guid: d8307b10db4e69f4aa87870b5dd82e4e, type: 3}
   enableGravity: 0
   defaultGravity: 0
   _rb: {fileID: 1138966953526591321}
@@ -163,7 +165,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38909704522565481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -309,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77b45b609a84554b930079402340f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InstaWeaponUnlock: 0
   firePoint: {fileID: 4458382716094737609}
   Bullet1Prefab: {fileID: 2823887888628946285, guid: 212ad0f5e79328b4b94ed2e6d619f9c8, type: 3}
   Bullet2Prefab: {fileID: 2181537869703240669, guid: 101271fbc677f7c4aa3d2d84cc269b6c, type: 3}
@@ -318,7 +321,7 @@ MonoBehaviour:
   gun1: {fileID: 114246757628288924}
   gun2: {fileID: 2713039850728563921}
   shoot1: {fileID: 8300000, guid: 536fe91c5945db64e824f108f230bda9, type: 3}
-  shoot2: {fileID: 8300000, guid: 2b87a85eb7c69f84e987e1ea61f516e0, type: 3}
+  shoot2: {fileID: 8300000, guid: 0a8f973b7bc7a5648b8c4d2ef34b37aa, type: 3}
 --- !u!95 &6512769297247095977
 Animator:
   serializedVersion: 5
@@ -340,6 +343,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &4629035235873921239
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38909704522565481}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009820461, y: -0.054177247}
+  m_Size: {x: 1.1476526, y: 2.0326407}
+  m_Direction: 0
 --- !u!1 &114246757628288924
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +588,7 @@ GameObject:
   - component: {fileID: 7348372937937941828}
   m_Layer: 0
   m_Name: GroundCheckDown
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
