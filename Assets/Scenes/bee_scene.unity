@@ -135,9 +135,45 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: gun1
+      value: 
+      objectReference: {fileID: 1744277631}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: gun2
+      value: 
+      objectReference: {fileID: 1479114526}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
       propertyPath: shoot
       value: 
       objectReference: {fileID: 8300000, guid: 536fe91c5945db64e824f108f230bda9, type: 3}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: shoot1
+      value: 
+      objectReference: {fileID: 8300000, guid: 536fe91c5945db64e824f108f230bda9, type: 3}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: shoot2
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b87a85eb7c69f84e987e1ea61f516e0, type: 3}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: Bullet2CD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 525031685}
+    - target: {fileID: 1032759747781302837, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: Bullet2Prefab
+      value: 
+      objectReference: {fileID: 2181537869703240669, guid: 101271fbc677f7c4aa3d2d84cc269b6c, type: 3}
+    - target: {fileID: 4397678020034903400, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: enableGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397678020034903400, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: defaultGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4397678020034903400, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
       propertyPath: firepointTransform
       value: 
@@ -880,6 +916,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1479114526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2713039850728563921, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+  m_PrefabInstance: {fileID: 138004118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1744277631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 114246757628288924, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+  m_PrefabInstance: {fileID: 138004118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2030287236
 GameObject:
   m_ObjectHideFlags: 0
