@@ -8,7 +8,6 @@ public class PauseMenu : MonoBehaviour {
 
     private void Start() {
         pausemenu = this.gameObject;
-        pausemenu.SetActive(false);
     }
 
     void Update()
