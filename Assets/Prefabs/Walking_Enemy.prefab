@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2557239892872007836}
   - component: {fileID: 7376034639560504835}
   - component: {fileID: 8641433148448373563}
+  - component: {fileID: 9135595140232068081}
   m_Layer: 0
   m_Name: Walking_Enemy
   m_TagString: Enemy
@@ -106,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 6156067003052832054}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.67, y: 3.96, z: 0}
+  m_LocalPosition: {x: -2.405, y: 4.042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -197,7 +198,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0018405914, y: 0}
+  m_Offset: {x: -0.008102298, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -208,7 +209,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64292884, y: 1}
+  m_Size: {x: 0.64349294, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7376034639560504835
 Rigidbody2D:
@@ -253,3 +254,24 @@ MonoBehaviour:
   Score: 50
   Damage: 1
   Speed: 3
+--- !u!95 &9135595140232068081
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156067003052832054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ed0a098907bebb44a2cc736d951bfa9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
