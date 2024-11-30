@@ -43,6 +43,9 @@ public class Player_Stats : MonoBehaviour
         if (CurrentHP <= 0)
         {
             OnGameOver?.Invoke();
+            Destroy(gameObject);
+            //GameOver
+
         }
     }
 }
