@@ -751,7 +751,7 @@ MonoBehaviour:
     Inverse
     - SPACE
 
-    Pause - P'
+    ESC - menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83b5e9fdfcdd13647a12d6370ffee349, type: 2}
   m_sharedMaterial: {fileID: 761539809066929207, guid: 83b5e9fdfcdd13647a12d6370ffee349, type: 2}
