@@ -26,6 +26,11 @@ public class Player_Stats : MonoBehaviour
         return Score;
     }
 
+    public void GiveGravitySwap()
+    {
+        CanSwapGravity = true;
+    }
+
     public void DamageNaMorde(float damage)
     {
         CurrentHP -= damage;
