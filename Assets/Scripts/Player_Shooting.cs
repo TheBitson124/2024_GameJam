@@ -13,13 +13,10 @@ public class Player_Shooting : MonoBehaviour
     
     void Update()
     {
-        while (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && !isOnCD)
         {
-            if (!isOnCD)
-            {
-                Shoot();
-                StartCoroutine(Cooldown(Bullet1CD));
-            }
+            Shoot();
+            StartCoroutine(Cooldown(Bullet1CD));
         }
     }
     

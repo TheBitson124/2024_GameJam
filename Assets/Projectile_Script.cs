@@ -7,10 +7,10 @@ public class Projectile_Script : MonoBehaviour
 {
     [SerializeField] private float Damage;
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private int speed;
+    [SerializeField] private float speed;
     private void Awake()
     {
-        _rb.velocity = new Vector2(speed, _rb.velocity.y);
+        _rb.velocity = new Vector2(transform.right.x * speed, _rb.velocity.y);
         StartCoroutine(ProjectileDestroy());
     }
     
@@ -18,5 +18,13 @@ public class Projectile_Script : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!other.otherCollider.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
