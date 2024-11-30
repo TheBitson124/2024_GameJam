@@ -30,7 +30,7 @@ public class Enemy_Script : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject player = GameObject.FindWithTag("Player");
-            player.gameObject.GetComponent<Player_Stats>().IncreaseScore(Score);
+            player.GetComponent<Player_Stats>().IncreaseScore(Score);
         }
     }
 
