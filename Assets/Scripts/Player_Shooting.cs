@@ -66,7 +66,7 @@ public class Player_Shooting : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(shoot2, 0.5F);
+            audioSource.PlayOneShot(shoot2, 0.3F);
             Instantiate(Bullet2Prefab, firePoint.position, firePoint.rotation);
         }
     }
