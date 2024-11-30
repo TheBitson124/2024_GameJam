@@ -1,18 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float MaxHP;
+    private float CurrentHP;
+    private float Score;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        CurrentHP = MaxHP;
     }
 }
