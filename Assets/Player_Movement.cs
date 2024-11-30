@@ -6,29 +6,32 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 5f;
-    private float jumpPower = 16;
+    private float speed = 7f;
     private bool isFacingRight = true;
+    private bool isOnGround = false;
+    private bool isGravityReversed = false;
 
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private Transform _groundCheck;
+    [SerializeField] private Transform _groundCheckUp;
+    [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
-    
-    
-    void Start()
-    {
-        
-    }
     
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            //Tu grawitacja lolololo
+            if (_rb.gravityScale > 0)
+            {
+                isGravityReversed = true;
+                _rb.gravityScale = -4;
+            }
+            else
+            {
+                isGravityReversed = false;
+                _rb.gravityScale = 4;
+            }
         }
-        
         Flip();
     }
 
@@ -39,7 +42,14 @@ public class Player_Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
+        if (isGravityReversed)
+        {
+            return Physics2D.OverlapCircle(_groundCheckUp.position, 0.2f, _groundLayer);
+        }
+        else
+        {
+            return Physics2D.OverlapCircle(_groundCheckDown.position, 0.2f, _groundLayer);
+        }
     }
 
     private void Flip()
