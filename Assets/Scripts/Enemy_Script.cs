@@ -7,7 +7,9 @@ public class Enemy_Script : MonoBehaviour
 {
     [SerializeField] private int MaxHP;
     private float CurrentHP;
+
     [SerializeField] protected int Damage;
+
 
     private void Start()
     {

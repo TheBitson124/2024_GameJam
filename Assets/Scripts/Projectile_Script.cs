@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile_Script : MonoBehaviour
 {
-    [SerializeField] private float Damage;
+    [SerializeField] private int Damage;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float speed;
     private void Awake()
@@ -22,7 +22,7 @@ public class Projectile_Script : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.otherCollider.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
