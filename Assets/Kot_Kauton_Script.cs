@@ -50,7 +50,7 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator AttackCoroutine()
     {
-        State atk = State.MovingTowardsPlayer;
+        State atk = State.SpinToWin;
 
         switch (atk)
         {
@@ -82,8 +82,36 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator SpinToWinCoroutine()
     {
-        throw new NotImplementedException();
+        float counter = SpinDuration;
+        bool movingTowardsBoundary1 = (random.NextDouble() > 0.5);
+        float boundary1 = SpinBoundaries[0].x;
+        float boundary2 = SpinBoundaries[1].x;
+        
+        Vector3 velocity = new Vector3(movingTowardsBoundary1 ? -SpinSpeed : SpinSpeed, 0, 0); 
+
+        while (counter >= 0)
+        {
+            transform.position += velocity * Time.deltaTime;
+            
+            if (movingTowardsBoundary1 && transform.position.x <= boundary1)
+            {
+                movingTowardsBoundary1 = false;
+                velocity = new Vector3(SpinSpeed, 0, 0);
+            }
+            else if (!movingTowardsBoundary1 && transform.position.x >= boundary2)
+            {
+                movingTowardsBoundary1 = true;
+                velocity = new Vector3(-SpinSpeed, 0, 0);
+            }
+
+            counter -= Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(SpinDuration);
     }
+
+
 
     private IEnumerator SweepShootCoroutine()
     {
