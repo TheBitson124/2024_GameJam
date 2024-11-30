@@ -13,4 +13,9 @@ public class Player_Stats : MonoBehaviour
     {
         CurrentHP = MaxHP;
     }
+
+    public void IncreaseScore(int i)
+    {
+        Score += i;
+    }
 }
