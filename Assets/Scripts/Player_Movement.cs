@@ -26,7 +26,7 @@ public class Player_Movement : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
-        if (defaultGravity = true)
+        if (defaultGravity)
         {
             _rb.gravityScale = -4;
         }

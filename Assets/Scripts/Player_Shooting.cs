@@ -27,6 +27,20 @@ public class Player_Shooting : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            gun2.SetActive(false);
+            isWeapon1 = true;
+            gun1.SetActive(true);
+        } 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gun1.SetActive(false);
+            isWeapon1 = false;
+            gun2.SetActive(true);
+        } 
+        
+        
         if (Input.GetButton("Fire1") && !isOnCD)
         {
             Shoot();
@@ -50,6 +64,7 @@ public class Player_Shooting : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(shoot2, 0.7F);
             Instantiate(Bullet2Prefab, firePoint.position, firePoint.rotation);
         }
         
