@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
+    private bool CanSwapGravity;
     [SerializeField] private float MaxHP;
     private float CurrentHP;
     private float Score;
@@ -12,10 +13,26 @@ public class Player_Stats : MonoBehaviour
     private void Start()
     {
         CurrentHP = MaxHP;
+        CanSwapGravity = false;
     }
 
-    public void IncreaseScore(int i)
+    public void IncreaseScore(float i)
     {
         Score += i;
+    }
+
+    public float GetScore()
+    {
+        return Score;
+    }
+
+    public void DamageNaMorde(float damage)
+    {
+        CurrentHP -= damage;
+        
+        if (CurrentHP <= 0)
+        {
+            //GameOver
+        }
     }
 }
