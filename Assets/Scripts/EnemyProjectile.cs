@@ -21,18 +21,8 @@ public class EnemyProjectile : MonoBehaviour
             Vector2 direction = (playerTransform.position - transform.position).normalized;
             _rb.velocity = direction * speed;
         }
-        else
-        {
-            Debug.LogWarning("Player not found. Projectile will not move towards player.");
-        }
-        StartCoroutine(ProjectileDestroy());
     }
-
-    private IEnumerator ProjectileDestroy()
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
