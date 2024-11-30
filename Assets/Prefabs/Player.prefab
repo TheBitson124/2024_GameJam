@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77b45b609a84554b930079402340f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InstaWeaponUnlock: 0
   firePoint: {fileID: 4458382716094737609}
   Bullet1Prefab: {fileID: 2823887888628946285, guid: 212ad0f5e79328b4b94ed2e6d619f9c8, type: 3}
   Bullet2Prefab: {fileID: 2181537869703240669, guid: 101271fbc677f7c4aa3d2d84cc269b6c, type: 3}
@@ -318,7 +319,7 @@ MonoBehaviour:
   gun1: {fileID: 114246757628288924}
   gun2: {fileID: 2713039850728563921}
   shoot1: {fileID: 8300000, guid: 536fe91c5945db64e824f108f230bda9, type: 3}
-  shoot2: {fileID: 8300000, guid: 2b87a85eb7c69f84e987e1ea61f516e0, type: 3}
+  shoot2: {fileID: 8300000, guid: 0a8f973b7bc7a5648b8c4d2ef34b37aa, type: 3}
 --- !u!95 &6512769297247095977
 Animator:
   serializedVersion: 5
