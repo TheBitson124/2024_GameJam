@@ -22,9 +22,9 @@ public class Enemy_Script : MonoBehaviour
         CurrentHP -= dmg;
         if (CurrentHP <=0)
         {
-            Destroy(gameObject);
             GameObject player = GameObject.FindWithTag("Player");
             player.gameObject.GetComponent<Player_Stats>().IncreaseScore(Score);
+            Destroy(gameObject);
         }
     }
 
