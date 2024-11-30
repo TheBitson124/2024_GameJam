@@ -37,6 +37,7 @@ public class Player_Stats : MonoBehaviour
         
         if (CurrentHP <= 0)
         {
+            Destroy(gameObject);
             //GameOver
         }
     }
