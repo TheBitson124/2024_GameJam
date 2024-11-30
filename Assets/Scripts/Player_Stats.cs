@@ -57,10 +57,17 @@ public class Player_Stats : MonoBehaviour
         return CurrentHP;
     }
 
+    public IEnumerator ShowRed()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
     public void DamageNaMorde(int damage)
     {
         CurrentHP -= damage;
         OnHPChanged?.Invoke(CurrentHP);
+        StartCoroutine(ShowRed());
         if (CurrentHP <= 0)
         {
             OnGameOver?.Invoke();
