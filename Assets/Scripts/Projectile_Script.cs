@@ -24,6 +24,10 @@ public class Projectile_Script : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player"))
         {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponent<Enemy_Script>().DamageNaMorde(Damage);
+            }
             Destroy(gameObject);
         }
     }
