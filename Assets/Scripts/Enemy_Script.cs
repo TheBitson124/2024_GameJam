@@ -8,6 +8,7 @@ public class Enemy_Script : MonoBehaviour
     [SerializeField] private int MaxHP;
     private float CurrentHP;
 
+    [SerializeField] private int Score;
     [SerializeField] protected int Damage;
 
 
@@ -22,6 +23,8 @@ public class Enemy_Script : MonoBehaviour
         if (CurrentHP <=0)
         {
             Destroy(gameObject);
+            GameObject player = GameObject.FindWithTag("Player");
+            player.gameObject.GetComponent<Player_Stats>().IncreaseScore(Score);
         }
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6852489276729814068}
   - component: {fileID: 3510657031976250317}
   m_Layer: 0
-  m_Name: Star 1
+  m_Name: Star
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4817378434769422793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4801, y: -1.9505, z: 0}
+  m_LocalPosition: {x: 1.39, y: -1.64, z: 0}
   m_LocalScale: {x: 1.7505366, y: 1.5593472, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0025886705, y: -0.023276452}
+  m_Offset: {x: 0.0025886705, y: -0.076045245}
   serializedVersion: 2
-  m_Radius: 0.16725974
+  m_Radius: 0.5097285
 --- !u!114 &3510657031976250317
 MonoBehaviour:
   m_ObjectHideFlags: 0
