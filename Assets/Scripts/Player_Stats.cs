@@ -6,22 +6,27 @@ using UnityEngine;
 public class Player_Stats : MonoBehaviour
 {
     private bool CanSwapGravity;
-    [SerializeField] private float MaxHP;
-    private float CurrentHP;
-    private float Score;
+    [SerializeField] private int MaxHP;
+    private int CurrentHP;
+    private int Score;
 
+    public static event Action<int> OnScoreChanged;
+    public static event Action<int> OnHPChanged;
+    public static event Action OnGameOver;
+    
     private void Start()
     {
         CurrentHP = MaxHP;
         CanSwapGravity = false;
     }
 
-    public void IncreaseScore(float i)
+    public void IncreaseScore(int i)
     {
         Score += i;
+        OnScoreChanged?.Invoke(GetScore());
     }
 
-    public float GetScore()
+    public int GetScore()
     {
         return Score;
     }
@@ -31,13 +36,13 @@ public class Player_Stats : MonoBehaviour
         CanSwapGravity = true;
     }
 
-    public void DamageNaMorde(float damage)
+    public void DamageNaMorde(int damage)
     {
         CurrentHP -= damage;
-        
+        OnHPChanged?.Invoke(CurrentHP);
         if (CurrentHP <= 0)
         {
-            //GameOver
+            OnGameOver?.Invoke();
         }
     }
 }
