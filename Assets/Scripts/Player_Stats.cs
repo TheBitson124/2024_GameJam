@@ -19,6 +19,7 @@ public class Player_Stats : MonoBehaviour
     {
         CurrentHP = MaxHP;
         CanSwapGravity = false;
+        Weapon2Unlock = false;
     }
 
     private bool getWeaponUnlock()
