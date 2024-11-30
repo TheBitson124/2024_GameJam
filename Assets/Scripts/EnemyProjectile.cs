@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,16 +34,16 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Enemy"))
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                // Assuming the player has a script named "Player_Script" with a method "TakeDamage"
                 other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
             }
             Destroy(gameObject);
         }
     }
+    
 }
