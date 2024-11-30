@@ -36,7 +36,7 @@ namespace DefaultNamespace
                     SceneManager.LoadScene("BossRoom");
                 }
                 lvl++;
-                SceneManager.LoadScene("Level" + (lvl-1));
+                SceneManager.LoadScene("Level" + (lvl));
             }
             else
             {

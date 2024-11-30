@@ -42,7 +42,7 @@ public class Kot_Kauton : Enemy_Script
 
     private void Update()
     {
-        while (CurrentHP > 0)
+        if (CurrentHP > 0)
         {
             StartCoroutine(AttackCoroutine());
         }
@@ -50,7 +50,7 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator AttackCoroutine()
     {
-        State atk = RollAttack();
+        State atk = State.MovingTowardsPlayer;
 
         switch (atk)
         {
@@ -69,9 +69,15 @@ public class Kot_Kauton : Enemy_Script
         }
     }
 
-    private string MoveTowardsPlayerCoroutine()
+    private IEnumerator MoveTowardsPlayerCoroutine()
     {
-        throw new NotImplementedException();
+        horizontal = Input.GetAxisRaw("Horizontal");
+        _animator.SetInteger("Speed", Math.Abs((int)horizontal));
+
+        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
+        Renderer.flipX = multi < 0;
+        yield return new WaitForSeconds(4);
     }
 
     private IEnumerator SpinToWinCoroutine()
