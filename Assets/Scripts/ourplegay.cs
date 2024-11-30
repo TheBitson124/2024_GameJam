@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ourplegay : Enemy_Script
 {
+    [SerializeField] private Transform firePoint;
     [SerializeField] private float Speed;
     [SerializeField] private GameObject Bullet;
     private SpriteRenderer Renderer;
@@ -11,6 +12,7 @@ public class ourplegay : Enemy_Script
     private Animator _animator;
     private float horizontal;
     private bool onCD;
+    private bool rotated;
 
     private void Awake()
     {
@@ -27,6 +29,16 @@ public class ourplegay : Enemy_Script
         var multi = other.gameObject.transform.position.x > transform.position.x ? 1 : -1;
         transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
         Renderer.flipX = multi > 0;
+        if (multi > 0 && !rotated)
+        {
+            rotated = true;
+            firePoint.Rotate(0f, 180f, 0f);
+        }
+        else
+        {
+            rotated = false;
+            firePoint.Rotate(0f, 180f, 0f);
+        }
         Shoot();
         StartCoroutine(ProjectileDestroy());
     }
@@ -51,7 +63,7 @@ public class ourplegay : Enemy_Script
     {
         if (!onCD)
         {
-            Instantiate(Bullet, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(Bullet, firePoint.position, firePoint.rotation);
         }
     }
 }
