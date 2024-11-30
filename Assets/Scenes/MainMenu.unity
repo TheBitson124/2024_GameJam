@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ad40d6cff22e845b1287789082c40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelName: bee_scene
+  firstLevelName: Level1
 --- !u!1 &1023814677
 GameObject:
   m_ObjectHideFlags: 0
