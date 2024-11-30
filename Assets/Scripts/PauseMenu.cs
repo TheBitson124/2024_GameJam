@@ -1,13 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
     private bool isPaused;
 
-    private GameObject pausemenu;
+    private TextMeshProUGUI wieksze;
 
     private void Start() {
-        pausemenu = this.gameObject;
+        wieksze = GetComponent<TextMeshProUGUI>();
+
+        wieksze.enabled = false;
     }
 
     void Update()
@@ -31,22 +34,21 @@ public class PauseMenu : MonoBehaviour {
             ReturnToMainMenu();
         }
     }
-    void Pause()
-    {
-        pausemenu.SetActive(true);
+    void Pause() {
+        wieksze.enabled = true;
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void Resume()
     {
-        pausemenu.SetActive(false);
+        wieksze.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
     }
     public void ReturnToMainMenu()
     {
-        pausemenu.SetActive(false);
+        wieksze.enabled = false;
         Time.timeScale = 1f; 
         SceneManager.LoadScene("MainMenu");
     }
