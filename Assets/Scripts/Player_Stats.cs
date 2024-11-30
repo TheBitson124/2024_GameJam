@@ -52,6 +52,11 @@ public class Player_Stats : MonoBehaviour
         return CanSwapGravity;
     }
 
+    public int GetHealth()
+    {
+        return CurrentHP;
+    }
+
     public void DamageNaMorde(int damage)
     {
         CurrentHP -= damage;
@@ -64,5 +69,10 @@ public class Player_Stats : MonoBehaviour
             
         }
         Debug.Log(CurrentHP);
+    }
+
+    public void Heal()
+    {
+        CurrentHP += 1;
     }
 }

@@ -61,7 +61,7 @@ public class Player_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2(horizontal * speed, _rb.velocity.y);
+        _rb.velocity = new Vector2(horizontal * speed,Mathf.Clamp(_rb.velocity.y,-100,100));
     }
 
     private bool IsGrounded()
