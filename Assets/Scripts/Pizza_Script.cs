@@ -10,6 +10,7 @@ public class Pizza_Script : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player_Stats>().IncreaseScore(30);
+            Destroy(gameObject);
         }
     }
 }
