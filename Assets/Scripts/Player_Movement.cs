@@ -6,8 +6,10 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     private AudioSource audioSource;
+    public AudioClip changeGravity;
+    //public AudioClip hurt;
     private float horizontal;
-    private int speed = 7;
+    private int speed = 10;
     private bool isFacingRight = true;
     private bool gravitySwapUnlocked = false;
     private Animator _animator;
@@ -44,6 +46,7 @@ public class Player_Movement : MonoBehaviour
         {
 
             FlipY();
+            audioSource.PlayOneShot(changeGravity, 0.5F);
             if (_rb.gravityScale > 0)
             {
                 _rb.gravityScale = -4;
