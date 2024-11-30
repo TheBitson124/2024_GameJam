@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy_Script : MonoBehaviour
 {
-    [SerializeField] private float MaxHP;
+    [SerializeField] private int MaxHP;
     private float CurrentHP;
-    [SerializeField] private float Damage;
+    [SerializeField] private int Damage;
 
     private void Start()
     {
