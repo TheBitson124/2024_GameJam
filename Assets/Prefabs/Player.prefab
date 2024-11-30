@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9d1ffa34e9e4d40a65646340568d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeGravity: {fileID: 8300000, guid: d8307b10db4e69f4aa87870b5dd82e4e, type: 3}
   enableGravity: 0
   defaultGravity: 0
   _rb: {fileID: 1138966953526591321}
