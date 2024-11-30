@@ -42,7 +42,7 @@ public class Kot_Kauton : Enemy_Script
 
     private void Update()
     {
-        while (CurrentHP > 0)
+        if (CurrentHP > 0)
         {
             StartCoroutine(AttackCoroutine());
         }
