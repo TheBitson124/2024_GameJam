@@ -8,8 +8,15 @@ public class Player_Shooting : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject Bullet1Prefab;
     [SerializeField] private float Bullet1CD;
-
+    private AudioSource audioSource;
+    public AudioClip shoot;
+    
     private bool isOnCD = false;
+    
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     
     void Update()
     {
@@ -22,6 +29,7 @@ public class Player_Shooting : MonoBehaviour
     
     private void Shoot()
     {
+        audioSource.PlayOneShot(shoot, 0.7F);
         Instantiate(Bullet1Prefab, firePoint.position, firePoint.rotation);
     }
     

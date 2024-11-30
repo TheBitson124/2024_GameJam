@@ -16,6 +16,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Player_Stats playerStats;
+    [SerializeField] private Transform firepointTransform;
     
 
 
@@ -67,8 +68,11 @@ public class Player_Movement : MonoBehaviour
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
             isFacingRight = !isFacingRight;
-            transform.Rotate(0f, 180f, 0f);
+            firepointTransform.Rotate(0f, 180f, 0f);
         }
     }
     
