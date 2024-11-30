@@ -5,26 +5,42 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    
     private AudioSource audioSource;
     private float horizontal;
-    private float speed = 7f;
+    private int speed = 7;
     private bool isFacingRight = true;
+    private bool gravitySwapUnlocked = false;
+    private Animator _animator;
 
+    [SerializeField] private bool enableGravity;
+    [SerializeField] private bool defaultGravity;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private Player_Stats playerStats;
+    [SerializeField] private Transform firepointTransform;
+    
 
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
+        if (defaultGravity = true)
+        {
+            _rb.gravityScale = -4;
+        }
     }
 
     void Update()
     {
+        if (playerStats.getSwap() || enableGravity)
+        {
+            unlockGravitySwap();
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        _animator.SetInteger("speed", Math.Abs((int)horizontal));
+        if (Input.GetButtonDown("Jump") && IsGrounded() && gravitySwapUnlocked)
         {
 
             FlipY();
@@ -50,12 +66,19 @@ public class Player_Movement : MonoBehaviour
         return Physics2D.OverlapCircle(_groundCheckDown.position, 0.2f, _groundLayer);
     }
 
+    private void unlockGravitySwap()
+    {
+        gravitySwapUnlocked = true;
+    }
     private void FlipX()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
             isFacingRight = !isFacingRight;
-            transform.Rotate(0f, 180f, 0f);
+            firepointTransform.Rotate(0f, 180f, 0f);
         }
     }
     

@@ -35,6 +35,16 @@ public class Player_Stats : MonoBehaviour
     {
         CanSwapGravity = true;
     }
+    
+    public bool getSwap()
+    {
+        return CanSwapGravity;
+    }
+
+    public int GetHealth()
+    {
+        return CurrentHP;
+    }
 
     public void DamageNaMorde(int damage)
     {
@@ -47,5 +57,10 @@ public class Player_Stats : MonoBehaviour
             //GameOver
 
         }
+    }
+
+    public void Heal()
+    {
+        CurrentHP += 1;
     }
 }
