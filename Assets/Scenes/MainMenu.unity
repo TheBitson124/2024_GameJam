@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ad40d6cff22e845b1287789082c40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelName: 
+  firstLevelName: bee_scene
 --- !u!1 &1023814677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,8 +1606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -730.00006, y: -419.3701}
-  m_SizeDelta: {x: 460, y: 241.26}
+  m_AnchoredPosition: {x: -730.00006, y: -385.54}
+  m_SizeDelta: {x: 460, y: 308.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1651889807
 MonoBehaviour:
@@ -1640,7 +1640,9 @@ MonoBehaviour:
     Inverse
     - SPACE
 
-    ESC - menu'
+    Pause - P
+
+    Change gun-1/2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83b5e9fdfcdd13647a12d6370ffee349, type: 2}
   m_sharedMaterial: {fileID: 761539809066929207, guid: 83b5e9fdfcdd13647a12d6370ffee349, type: 2}
@@ -1675,7 +1677,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
