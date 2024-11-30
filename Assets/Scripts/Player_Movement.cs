@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
+    
+    private AudioSource audioSource;
     private float horizontal;
     private float speed = 7f;
     private bool isFacingRight = true;
@@ -11,20 +14,26 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
-    
+
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+
+            FlipY();
             if (_rb.gravityScale > 0)
             {
-                FlipY();
                 _rb.gravityScale = -4;
             }
             else
             {
-                FlipY();
                 _rb.gravityScale = 4;
             }
         }
