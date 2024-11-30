@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8610656475539363987}
   - component: {fileID: 8708014580909285786}
   - component: {fileID: 1032759747781302837}
+  - component: {fileID: 6512769297247095977}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -110,6 +111,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerStats: {fileID: 4359907091061611464}
 --- !u!114 &4359907091061611464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +307,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4458382716094737609}
   Bullet1Prefab: {fileID: 2823887888628946285, guid: 212ad0f5e79328b4b94ed2e6d619f9c8, type: 3}
-  Bullet1CD: 1
+  Bullet1CD: 0.5
+--- !u!95 &6512769297247095977
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38909704522565481}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f8cb884cc7d9e646a7cfae8a795f6a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &114246757628288924
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +455,7 @@ GameObject:
   - component: {fileID: 7348372937937941828}
   m_Layer: 0
   m_Name: GroundCheckDown
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
