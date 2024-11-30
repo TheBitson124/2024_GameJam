@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pizza_Script : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
