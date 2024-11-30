@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: firepointTransform
       value: 
       objectReference: {fileID: 1122803657}
+    - target: {fileID: 5371937922918695352, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6907704127939200486, guid: b18029893d41a304fbfc701eeb8eaa8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0645564

@@ -22,6 +22,7 @@ public class Player_Shooting : MonoBehaviour
     
     void Start()
     {
+        gun2.SetActive(false);
         audioSource = GetComponent<AudioSource>();
     }
     
@@ -64,13 +65,10 @@ public class Player_Shooting : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(shoot2, 0.7F);
+            audioSource.PlayOneShot(shoot2, 0.5F);
             Instantiate(Bullet2Prefab, firePoint.position, firePoint.rotation);
         }
-        
     }
-
-    
     
     private IEnumerator Cooldown(float secs)
     {
