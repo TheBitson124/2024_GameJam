@@ -10,7 +10,7 @@ public class Enemy_Script : MonoBehaviour
 
     [SerializeField] private int Score;
     [SerializeField] protected int Damage;
-
+    
 
     private void Start()
     {
@@ -28,9 +28,9 @@ public class Enemy_Script : MonoBehaviour
         StartCoroutine(ShowRed());
         if (CurrentHP <=0)
         {
+            Destroy(gameObject);
             GameObject player = GameObject.FindWithTag("Player");
             player.gameObject.GetComponent<Player_Stats>().IncreaseScore(Score);
-            Destroy(gameObject);
         }
     }
 
