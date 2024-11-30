@@ -11,7 +11,9 @@ public class Player_Movement : MonoBehaviour
     private bool isFacingRight = true;
     private bool gravitySwapUnlocked = false;
     private Animator _animator;
-    
+
+    [SerializeField] private bool enableGravity;
+    [SerializeField] private bool defaultGravity;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
@@ -24,11 +26,15 @@ public class Player_Movement : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
+        if (defaultGravity)
+        {
+            _rb.gravityScale = -4;
+        }
     }
 
     void Update()
     {
-        if (playerStats.getSwap())
+        if (playerStats.getSwap() || enableGravity)
         {
             unlockGravitySwap();
         }

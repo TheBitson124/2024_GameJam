@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player_Stats : MonoBehaviour
 {
     private bool CanSwapGravity;
+    private bool Weapon2Unlock;
     [SerializeField] private int MaxHP;
     private int CurrentHP;
     private int Score;
@@ -18,8 +19,18 @@ public class Player_Stats : MonoBehaviour
     {
         CurrentHP = MaxHP;
         CanSwapGravity = false;
+        Weapon2Unlock = false;
     }
 
+    public bool getWeaponUnlock()
+    {
+        return Weapon2Unlock;
+    }
+
+    public void setWeaponUnlock(bool setValue)
+    {
+        Weapon2Unlock = setValue;
+    }
     public void IncreaseScore(int i)
     {
         Score += i;
