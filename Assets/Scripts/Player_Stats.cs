@@ -66,8 +66,9 @@ public class Player_Stats : MonoBehaviour
             OnGameOver?.Invoke();
             Destroy(gameObject);
             //GameOver
-
+            
         }
+        Debug.Log(CurrentHP);
     }
 
     public void Heal()
