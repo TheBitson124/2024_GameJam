@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_Shooting : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject Bullet1Prefab;
+    [SerializeField] private float Bullet1CD;
 
-    // Update is called once per frame
+    private bool isOnCD = false;
+    
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && !isOnCD)
         {
-            
+            Shoot();
+            StartCoroutine(Cooldown(Bullet1CD));
         }
     }
-
+    
     private void Shoot()
     {
-        
+        Instantiate(Bullet1Prefab, firePoint.position, firePoint.rotation);
+    }
+    
+    
+    private IEnumerator Cooldown(float secs)
+    {
+        isOnCD = true;
+        yield return new WaitForSeconds(secs);
+        isOnCD = false;
     }
 }

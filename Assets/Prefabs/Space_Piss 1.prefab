@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6003203244520547442}
   - component: {fileID: 495592616699551181}
   - component: {fileID: 4684643300146361124}
+  - component: {fileID: 7909549537917449497}
   m_Layer: 0
   m_Name: Space_Piss 1
   m_TagString: Untagged
@@ -47,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
+  _rb: {fileID: 7909549537917449497}
+  speed: 5
 --- !u!212 &495592616699551181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,3 +137,30 @@ CapsuleCollider2D:
   m_Offset: {x: -0.003524541, y: 0.010501297}
   m_Size: {x: 1.0490235, y: 0.2507953}
   m_Direction: 1
+--- !u!50 &7909549537917449497
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823887888628946285}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
