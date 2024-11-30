@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   _rb: {fileID: 7909549537917449497}
-  speed: 5
+  speed: 10
 --- !u!212 &495592616699551181
 SpriteRenderer:
   m_ObjectHideFlags: 0
