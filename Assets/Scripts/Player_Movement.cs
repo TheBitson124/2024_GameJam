@@ -11,7 +11,8 @@ public class Player_Movement : MonoBehaviour
     private bool isFacingRight = true;
     private bool gravitySwapUnlocked = false;
     private Animator _animator;
-    
+
+    [SerializeField] private bool enableGravity;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
@@ -28,7 +29,7 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
-        if (playerStats.getSwap())
+        if (playerStats.getSwap() || enableGravity)
         {
             unlockGravitySwap();
         }
