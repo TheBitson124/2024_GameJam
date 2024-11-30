@@ -30,6 +30,11 @@ public class Player_Stats : MonoBehaviour
     {
         CanSwapGravity = true;
     }
+    
+    public bool getSwap()
+    {
+        return CanSwapGravity;
+    }
 
     public void DamageNaMorde(float damage)
     {
