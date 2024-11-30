@@ -10,10 +10,12 @@ public class Player_Movement : MonoBehaviour
     private float horizontal;
     private float speed = 7f;
     private bool isFacingRight = true;
+    private bool gravitySwapUnlocked = false;
 
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private Player_Stats playerStats;
 
 
     private void Start()
@@ -23,8 +25,12 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
+        if (playerStats.getSwap())
+        {
+            unlockGravitySwap();
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded() && gravitySwapUnlocked)
         {
 
             FlipY();
@@ -50,6 +56,10 @@ public class Player_Movement : MonoBehaviour
         return Physics2D.OverlapCircle(_groundCheckDown.position, 0.2f, _groundLayer);
     }
 
+    private void unlockGravitySwap()
+    {
+        gravitySwapUnlocked = true;
+    }
     private void FlipX()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
