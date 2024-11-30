@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    
     private AudioSource audioSource;
     private float horizontal;
-    private float speed = 7f;
+    private int speed = 7;
     private bool isFacingRight = true;
     private bool gravitySwapUnlocked = false;
-
+    private Animator _animator;
+    
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Player_Stats playerStats;
+    
 
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,6 +32,7 @@ public class Player_Movement : MonoBehaviour
             unlockGravitySwap();
         }
         horizontal = Input.GetAxisRaw("Horizontal");
+        _animator.SetInteger("speed", Math.Abs((int)horizontal));
         if (Input.GetButtonDown("Jump") && IsGrounded() && gravitySwapUnlocked)
         {
 
