@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1937056387121224077}
   - component: {fileID: 2309540205879805216}
   - component: {fileID: 4175861587750181439}
-  - component: {fileID: 62144434702960374}
+  - component: {fileID: 9014319320320028504}
   m_Layer: 0
   m_Name: Barell
   m_TagString: Untagged
@@ -319,8 +319,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &62144434702960374
-BoxCollider2D:
+--- !u!70 &9014319320320028504
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -351,19 +351,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000014901161, y: -0.00037510693}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16430941, y: 0.28323546}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.00025021844, y: 0.00000003565211}
+  m_Size: {x: 0.16136941, y: 0.2811894}
+  m_Direction: 0
 --- !u!1 &2266566423230941780
 GameObject:
   m_ObjectHideFlags: 0
