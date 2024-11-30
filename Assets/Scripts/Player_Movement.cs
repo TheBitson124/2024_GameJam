@@ -7,10 +7,8 @@ public class Player_Movement : MonoBehaviour
     private float horizontal;
     private float speed = 7f;
     private bool isFacingRight = true;
-    private bool isGravityReversed = false;
 
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private Transform _groundCheckUp;
     [SerializeField] private Transform _groundCheckDown;
     [SerializeField] private LayerMask _groundLayer;
     
@@ -21,16 +19,16 @@ public class Player_Movement : MonoBehaviour
         {
             if (_rb.gravityScale > 0)
             {
-                isGravityReversed = true;
+                FlipY();
                 _rb.gravityScale = -4;
             }
             else
             {
-                isGravityReversed = false;
+                FlipY();
                 _rb.gravityScale = 4;
             }
         }
-        Flip();
+        FlipX();
     }
 
     private void FixedUpdate()
@@ -40,17 +38,10 @@ public class Player_Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        if (isGravityReversed)
-        {
-            return Physics2D.OverlapCircle(_groundCheckUp.position, 0.2f, _groundLayer);
-        }
-        else
-        {
-            return Physics2D.OverlapCircle(_groundCheckDown.position, 0.2f, _groundLayer);
-        }
+        return Physics2D.OverlapCircle(_groundCheckDown.position, 0.2f, _groundLayer);
     }
 
-    private void Flip()
+    private void FlipX()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
@@ -59,5 +50,12 @@ public class Player_Movement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+    
+    private void FlipY()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.y *= -1f;
+        transform.localScale = localScale;
     }
 }
