@@ -16,10 +16,16 @@ public class Enemy_Script : MonoBehaviour
     {
         CurrentHP = MaxHP;
     }
-
+    public IEnumerator ShowRed()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
     public void DamageNaMorde(float dmg)
     {
         CurrentHP -= dmg;
+        StartCoroutine(ShowRed());
         if (CurrentHP <=0)
         {
             GameObject player = GameObject.FindWithTag("Player");
