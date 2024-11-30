@@ -34,7 +34,7 @@ public class Player_Shooting : MonoBehaviour
             isWeapon1 = true;
             gun1.SetActive(true);
         } 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && playerStats.g)
         {
             gun1.SetActive(false);
             isWeapon1 = false;

@@ -22,12 +22,12 @@ public class Player_Stats : MonoBehaviour
         Weapon2Unlock = false;
     }
 
-    private bool getWeaponUnlock()
+    public bool getWeaponUnlock()
     {
         return Weapon2Unlock;
     }
 
-    private void setWeaponUnlock(bool setValue)
+    public void setWeaponUnlock(bool setValue)
     {
         Weapon2Unlock = setValue;
     }
