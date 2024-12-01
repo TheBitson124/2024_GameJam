@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -23,7 +24,9 @@ public class Kot_Kauton : Enemy_Script
     [SerializeField] private float SpinSpeed;
     [SerializeField] private GameObject Player;
     [SerializeField] private float SpinDuration;
+    [SerializeField] private float ActionInterval = 2f;
     
+    private float actionTimer = 0f;
     private SpriteRenderer Renderer;
     private float Counter = 0;
     private Animator _animator;
@@ -31,185 +34,145 @@ public class Kot_Kauton : Enemy_Script
     private Random random;
     private bool canAttack = true;
     private bool isAttacking = false;
+    private bool isCoroutineRunning = false;
+    private State currentState = State.MovingTowardsPlayer;
+    private bool isFacingRight = true;
+    private float moveDirection = 1f;
 
 
-    
-    private void Awake()
+    private void Start()
     {
-        _animator = GetComponent<Animator>();
-        Renderer = GetComponent<SpriteRenderer>();
         random = new Random();
-        
+        _animator = GetComponent<Animator>();
     }
-
     private void Update()
     {
-        if (CurrentHP > 0)
+
+        actionTimer -= Time.deltaTime;
+
+        if (actionTimer <= 0f)
         {
-            StartCoroutine(AttackCoroutine());
+            _animator.SetTrigger("StopSpin");
+            actionTimer = ActionInterval;
+            currentState = RollAttack(); 
+            Debug.Log(currentState);
         }
-    }
-
-    private IEnumerator AttackCoroutine()
-    {
-        while (CurrentHP > 0)
+        switch (currentState)
         {
-            if (isAttacking)
-            {
-                yield return null;
-                continue;
-            }
-
-            State atk = RollAttack();
-
-            switch (atk)
-            {
-                case State.CircularAttack:
-                    yield return StartCoroutine(CircularAttackCoroutine());
-                    break;
-                case State.SweepShoot:
-                    yield return StartCoroutine(SweepShootCoroutine());
-                    break;
-                case State.SpinToWin:
-                    yield return StartCoroutine(SpinToWinCoroutine());
-                    break;
-                case State.MovingTowardsPlayer:
-                    yield return StartCoroutine(MoveTowardsPlayerCoroutine());
-                    break;
-            }
-            
-            //yield return new WaitForSeconds(2f);
-        }
-    }
-
-    private IEnumerator WalkSlowly()
-    {
-        float walkDuration = 1f;
-        float timed = 0f;
-        while (timed < walkDuration)
-        {
-            if (isAttacking)
-            {
+            case State.MovingTowardsPlayer:
+                MoveTowardsPlayer();
                 break;
-            }
-            var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
-            transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
-            Renderer.flipX = multi < 0;
-            timed += Time.deltaTime;
-            yield return null;
-        }
-    }
-    private IEnumerator MoveTowardsPlayerCoroutine()
-    {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        _animator.SetInteger("Speed", Math.Abs((int)horizontal));
-        
-        float counter = 2;
-        while (counter >0)
-        {
-            yield return StartCoroutine(WalkSlowly());
-            counter -= Time.deltaTime;
-        }
-        canAttack = true;
-        yield return null;
-    } 
-
-    private IEnumerator SpinToWinCoroutine()
-    {
-        isAttacking = true;
-        _animator.SetTrigger("Spin");
-        float counter = SpinDuration;
-        bool movingTowardsBoundary1 = (random.NextDouble() > 0.5);
-        float boundary1 = SpinBoundaries[0].x;
-        float boundary2 = SpinBoundaries[1].x;
-        
-        Vector3 velocity = new Vector3(movingTowardsBoundary1 ? -SpinSpeed : SpinSpeed, 0, 0); 
-
-        while (counter >= 0)
-        {
-            transform.position += velocity * Time.deltaTime;
-            
-            if (movingTowardsBoundary1 && transform.position.x <= boundary1)
-            {
-                movingTowardsBoundary1 = false;
-                velocity = new Vector3(SpinSpeed, 0, 0);
-            }
-            else if (!movingTowardsBoundary1 && transform.position.x >= boundary2)
-            {
-                movingTowardsBoundary1 = true;
-                velocity = new Vector3(-SpinSpeed, 0, 0);
-            }
-            counter -= Time.deltaTime;
-        }
-        yield return new WaitForSeconds(SpinDuration);
-        _animator.SetTrigger("Sweep");
-        isAttacking = false;
-    }
-
-
-
-    private IEnumerator SweepShootCoroutine()
-    {
-        _animator.SetTrigger("Sweep");
-        isAttacking = true;
-        ShootProjectileSweep();
-        yield return new WaitForSeconds(2f);
-        isAttacking = false;
-    }
-
-
-    private IEnumerator CircularAttackCoroutine()
-    {
-        isAttacking = true; 
-
-        yield return new WaitForSeconds(1f);
-        isAttacking = false;
-    }
-
-    private void ShootProjectileCircular(int pos)
-    {
-        //throw new NotImplementedException();
-    }
-
-    private void ShootProjectileSweep()
-    {
-        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
-
-        switch (multi)
-        {
-            case >0:
-                SpawnProjectiles(1);
+            case State.CircularAttack:
+                CircularAttack();
                 break;
-            case <0:
-                SpawnProjectiles(0);
+            case State.SweepShoot:
+                SweepShoot();
+                break;
+            case State.SpinToWin:
+                SpinToWin();
                 break;
         }
     }
     
-    private void SpawnProjectiles(int direction)
+    private void MoveTowardsPlayer()
     {
-        if (direction == 0)
-        {
-            GameObject bullet1 = Instantiate(Projectile, new Vector3(transform.position.x-2.34f,transform.position.y-1,transform.position.z), transform.rotation);
-            GameObject bullet2 = Instantiate(Projectile, new Vector3(transform.position.x-2.09f,transform.position.y,transform.position.z), transform.rotation);
-            GameObject bullet3 = Instantiate(Projectile, new Vector3(transform.position.x-1.66f,transform.position.y+1,transform.position.z), transform.rotation);
-        }
-        else
-        {
-            GameObject bullet1 = Instantiate(Projectile, new Vector3(transform.position.x-2.34f,transform.position.y-1,transform.position.z), Quaternion.Euler(0, 0, 180));
-            GameObject bullet2 = Instantiate(Projectile, new Vector3(transform.position.x-2.09f,transform.position.y,transform.position.z), Quaternion.Euler(0, 0, 180));
-            GameObject bullet3 = Instantiate(Projectile, new Vector3(transform.position.x-1.66f,transform.position.y+1,transform.position.z), Quaternion.Euler(0, 0, 180));
-        }
+        if (Player == null) return;
+
+        float step = Speed * Time.deltaTime;
+        Vector2 targetPosition = Player.transform.position;
+        Vector2 currentPosition = transform.position;
+
+        float direction = targetPosition.x - currentPosition.x;
+        
+        FlipSprite(direction);
+
+        transform.position = Vector2.MoveTowards(currentPosition, targetPosition, step);
     }
 
+    private void CircularAttack()
+    {
+        Debug.Log("Circular Attack");
+
+        int numberOfProjectiles = 12;
+        float angleStep = 360f / numberOfProjectiles;
+        float currentAngle = 0f;
+
+        Vector3 spawnPosition = transform.position;
+
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            float projectileDirX = Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+            float projectileDirY = Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+            Vector2 projectileDirection = new Vector2(projectileDirX, projectileDirY).normalized;
+
+            GameObject newProjectile = Instantiate(Projectile, spawnPosition, Quaternion.identity);
+
+            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                float projectileSpeed = 5f;
+                rb.velocity = projectileDirection * projectileSpeed;
+            }
+
+            currentAngle += angleStep;
+        }
+        actionTimer = 0f;
+    }
+
+    private void SweepShoot()
+    {
+        Debug.Log("SweepShoot");
+
+        int numberOfProjectiles = 3; 
+        float spreadAngle = 30f; 
+        float startAngle = -spreadAngle / 2f; 
+        Vector3 spawnPosition = transform.position; 
+
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            float angle = startAngle + (spreadAngle / (numberOfProjectiles - 1)) * i;
+            
+            float projectileDirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+            float projectileDirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+            Vector2 projectileDirection = new Vector2(projectileDirX, projectileDirY).normalized;
+            
+            GameObject newProjectile = Instantiate(Projectile, spawnPosition, Quaternion.identity);
+            
+            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                float projectileSpeed = 5f; 
+                rb.velocity = projectileDirection * projectileSpeed;
+            }
+        }
+        actionTimer = 0f;
+    }
+
+    
+    private void SpinToWin()
+    {
+        _animator.SetTrigger("Spin");
+        Debug.Log("SpinToWin");
+        Speed = 20;
+        Vector2 velocity = new Vector2(moveDirection * Speed, 0f);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = velocity;
+        }
+    }
+    
+    
     private State RollAttack()
     {
         double randomValue = random.NextDouble();
-        if (randomValue > 0.8f) return State.SweepShoot;
-        else if (randomValue > 0.7f) return State.SpinToWin;
+        if (randomValue > 0.8f) return State.CircularAttack;
+        else if (randomValue > 0.7f) return State.SweepShoot;
+        else if (randomValue > 0.6f) return State.SpinToWin;
         return State.MovingTowardsPlayer;
     }
     
+   
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -219,5 +182,18 @@ public class Kot_Kauton : Enemy_Script
             other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
             Counter = 1;
         }else Counter -= Time.deltaTime;
+        moveDirection *= -1f;
+    }
+    
+    private void FlipSprite(float direction)
+    {
+        if ((direction < 0 && isFacingRight) || (direction > 0 && !isFacingRight))
+        {
+            isFacingRight = !isFacingRight;
+            
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
 }
