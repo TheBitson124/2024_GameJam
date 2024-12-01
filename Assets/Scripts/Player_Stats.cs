@@ -27,6 +27,8 @@ public class Player_Stats : MonoBehaviour
         CurrentHP = MaxHP;
         CanSwapGravity = false;
         Weapon2Unlock = false;
+        Score = PlayerPrefs.GetInt("Score");
+        OnScoreChanged?.Invoke(GetScore());
     }
 
     public bool getWeaponUnlock()
@@ -42,6 +44,7 @@ public class Player_Stats : MonoBehaviour
     {
         Score += i;
         OnScoreChanged?.Invoke(GetScore());
+        PlayerPrefs.SetInt("Score", GetScore());
     }
 
     public int GetScore()
