@@ -59,6 +59,9 @@ public class MusicBox : MonoBehaviour
             case "MainMenu":
                 PlayMusic(mainTheme);
                 break;
+            case "Boss":
+                PlayMusic(bossTheme);
+                break;
         }
     }
 
