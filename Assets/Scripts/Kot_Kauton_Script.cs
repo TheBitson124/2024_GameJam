@@ -43,6 +43,7 @@ public class Kot_Kauton : Enemy_Script
 
     private void Start()
     {
+        CurrentHP = 50;
         random = new Random();
         Speed = DefaultSpeed;
         _animator = GetComponent<Animator>();
@@ -51,7 +52,7 @@ public class Kot_Kauton : Enemy_Script
     {
 
         actionTimer -= Time.deltaTime;
-
+        print(CurrentHP);
         if (actionTimer <= 0f)
         {
             Speed = DefaultSpeed;
@@ -82,7 +83,7 @@ public class Kot_Kauton : Enemy_Script
         if (Player == null) return;
 
         float step = Speed * Time.deltaTime;
-        Vector2 targetPosition = Player.transform.position;
+        Vector2 targetPosition = new Vector2(Player.transform.position.x,transform.position.y);
         Vector2 currentPosition = transform.position;
 
         float direction = targetPosition.x - currentPosition.x;
@@ -177,7 +178,7 @@ public class Kot_Kauton : Enemy_Script
     
    
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Player")){return;}
         if (Counter <= 0f)
