@@ -6,20 +6,18 @@ namespace DefaultNamespace
     public class OneSceneManager : MonoBehaviour
     {
         private static OneSceneManager instance;
-        private int lvl;
-
+        private static int lvl;
         void Awake()
         {
-            // Sprawdź, czy już istnieje instancja PersistentVolume
             if (instance == null)
             {
                 instance = this;
                 lvl = 0;
-                DontDestroyOnLoad(gameObject); // Utrzymaj obiekt między scenami
+                DontDestroyOnLoad(gameObject); 
             }
             else
             {
-                Destroy(gameObject); // Usuń duplikaty
+                Destroy(gameObject);
             }
         }
 
@@ -36,7 +34,8 @@ namespace DefaultNamespace
                     SceneManager.LoadScene("BossRoom");
                 }
                 lvl++;
-                SceneManager.LoadScene("Level" + (lvl));
+                Debug.Log(lvl);
+                SceneManager.LoadScene("Level" + lvl);
             }
             else
             {
