@@ -21,6 +21,11 @@ namespace DefaultNamespace
             }
         }
 
+        public void resetLevel()
+        {
+            lvl = 0;
+        }
+
         public void NextScene()
         {
             if (SceneManager.GetActiveScene().name == "Transition" || SceneManager.GetActiveScene().name == "Main Menu")

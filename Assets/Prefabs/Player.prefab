@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 8708014580909285786}
   dmgAudio: {fileID: 8300000, guid: bd1f1eb3249090440907878e85fc03ef, type: 3}
+  OSM: {fileID: 6572671932554230457, guid: ed6f0c61f676bd645a1e17a75fa2dcbd, type: 3}
   MaxHP: 3
   _fadeIn: {fileID: 0}
 --- !u!50 &1138966953526591321
