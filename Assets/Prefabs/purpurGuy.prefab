@@ -64,7 +64,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003726244, y: 0.70554376}
+  m_Offset: {x: -0.08577967, y: 0.70554376}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -75,7 +75,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.385773, y: 2.4110868}
+  m_Size: {x: 13.472154, y: 2.4110868}
   m_EdgeRadius: 0
 --- !u!1 &7202843830059170957
 GameObject:
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 616324905495908981}
   - component: {fileID: 1023067383441559032}
   - component: {fileID: 485067069712198582}
+  - component: {fileID: 578705247305721655}
   m_Layer: 0
   m_Name: purpurGuy
   m_TagString: Enemy
@@ -107,7 +108,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.935, y: -2.83, z: 0}
-  m_LocalScale: {x: 3.3438063, y: 4.1249194, z: 1}
+  m_LocalScale: {x: 1.0410252, y: 1.1437234, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4528035153579155788}
@@ -214,8 +215,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036324967, y: 0}
-  m_Size: {x: 0.19891529, y: 0.32}
+  m_Offset: {x: 0.09603519, y: 0}
+  m_Size: {x: 0.97514904, y: 1.3087914}
   m_Direction: 0
 --- !u!50 &485067069712198582
 Rigidbody2D:
@@ -244,3 +245,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &578705247305721655
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202843830059170957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd4513203e1808141b242c308343bbc7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
