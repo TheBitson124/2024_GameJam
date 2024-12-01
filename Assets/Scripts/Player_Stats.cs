@@ -8,6 +8,7 @@ public class Player_Stats : MonoBehaviour
     private bool CanSwapGravity;
     private bool Weapon2Unlock;
     [SerializeField] private int MaxHP;
+    [SerializeField] private FadeIn _fadeIn;
     private int CurrentHP;
     private int Score;
 
@@ -72,6 +73,7 @@ public class Player_Stats : MonoBehaviour
         {
             OnHPChanged?.Invoke(0);
             OnGameOver?.Invoke();
+            _fadeIn.StartAction();
             Destroy(gameObject);
             //GameOver
             
