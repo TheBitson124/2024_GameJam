@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 3
+  _fadeIn: {fileID: 0}
 --- !u!50 &1138966953526591321
 Rigidbody2D:
   serializedVersion: 4
