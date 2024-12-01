@@ -89,5 +89,6 @@ public class Player_Stats : MonoBehaviour
     public void Heal()
     {
         CurrentHP += 1;
+        OnHPChanged?.Invoke(CurrentHP);
     }
 }

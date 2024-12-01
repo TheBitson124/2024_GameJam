@@ -180,13 +180,23 @@ public class Kot_Kauton : Enemy_Script
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Player")){return;}
+        if (!other.gameObject.CompareTag("CowTonBouncer"))
+        {
+            moveDirection *= -1f;
+            return;
+        }
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
         if (Counter <= 0f)
         {
             other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
             Counter = 1;
         }else Counter -= Time.deltaTime;
-        moveDirection *= -1f;
+
+        
+        
     }
     
     private void FlipSprite(float direction)
