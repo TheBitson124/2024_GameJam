@@ -1,10 +1,11 @@
 
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class HPUIScript : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer[] llby;
+    [SerializeField] private Image[] llby;
     void OnEnable() {
         Player_Stats.OnHPChanged += UpdateHP;
     }

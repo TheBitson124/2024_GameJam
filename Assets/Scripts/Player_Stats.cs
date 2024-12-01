@@ -70,12 +70,16 @@ public class Player_Stats : MonoBehaviour
         StartCoroutine(ShowRed());
         if (CurrentHP <= 0)
         {
+            OnHPChanged?.Invoke(0);
             OnGameOver?.Invoke();
             Destroy(gameObject);
             //GameOver
             
         }
-        Debug.Log(CurrentHP);
+<<<<<<< Updated upstream
+=======
+        //Debug.Log(CurrentHP);
+>>>>>>> Stashed changes
     }
 
     public void Heal()

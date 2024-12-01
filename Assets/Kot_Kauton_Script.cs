@@ -29,6 +29,8 @@ public class Kot_Kauton : Enemy_Script
     private Animator _animator;
     private float horizontal;
     private Random random;
+    private bool canAttack = true;
+    private bool isAttacking = false;
 
 
     
@@ -50,92 +52,154 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator AttackCoroutine()
     {
-        State atk = RollAttack();
-
-        switch (atk)
+        while (CurrentHP > 0)
         {
-            case State.CircularAttack:
-                yield return StartCoroutine(CircularAttackCoroutine());
-                break;
-            case State.SweepShoot:
-                yield return StartCoroutine(SweepShootCoroutine());
-                break;
-            case State.SpinToWin:
-                yield return StartCoroutine(SpinToWinCoroutine());
-                break;
-            case State.MovingTowardsPlayer:
-                yield return StartCoroutine(MoveTowardsPlayerCoroutine());
-                break;
+            if (isAttacking)
+            {
+                yield return null;
+                continue;
+            }
+
+            State atk = RollAttack();
+
+            switch (atk)
+            {
+                case State.CircularAttack:
+                    yield return StartCoroutine(CircularAttackCoroutine());
+                    break;
+                case State.SweepShoot:
+                    yield return StartCoroutine(SweepShootCoroutine());
+                    break;
+                case State.SpinToWin:
+                    yield return StartCoroutine(SpinToWinCoroutine());
+                    break;
+                case State.MovingTowardsPlayer:
+                    yield return StartCoroutine(MoveTowardsPlayerCoroutine());
+                    break;
+            }
+            
+            //yield return new WaitForSeconds(2f);
         }
     }
 
-    private string MoveTowardsPlayerCoroutine()
+    private IEnumerator WalkSlowly()
     {
-        throw new NotImplementedException();
+        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
+        Renderer.flipX = multi < 0;
+        Debug.Log("moving" + transform.position + " " + multi + " " + Speed);
+        yield return new WaitForSeconds(0f);
+    }
+    private IEnumerator MoveTowardsPlayerCoroutine()
+    {
+        horizontal = Input.GetAxisRaw("Horizontal");
+        _animator.SetInteger("Speed", Math.Abs((int)horizontal));
+        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
+        Renderer.flipX = multi < 0;
+        float counter = 4;
+        while (counter >0)
+        {
+            StartCoroutine(WalkSlowly());
+            counter -= Time.deltaTime;
+        }
+        canAttack = true;
+        yield return null;
     }
 
     private IEnumerator SpinToWinCoroutine()
     {
-        throw new NotImplementedException();
+        isAttacking = true;
+        float counter = SpinDuration;
+        bool movingTowardsBoundary1 = (random.NextDouble() > 0.5);
+        float boundary1 = SpinBoundaries[0].x;
+        float boundary2 = SpinBoundaries[1].x;
+        
+        Vector3 velocity = new Vector3(movingTowardsBoundary1 ? -SpinSpeed : SpinSpeed, 0, 0); 
+
+        while (counter >= 0)
+        {
+            transform.position += velocity * Time.deltaTime;
+            
+            if (movingTowardsBoundary1 && transform.position.x <= boundary1)
+            {
+                movingTowardsBoundary1 = false;
+                velocity = new Vector3(SpinSpeed, 0, 0);
+            }
+            else if (!movingTowardsBoundary1 && transform.position.x >= boundary2)
+            {
+                movingTowardsBoundary1 = true;
+                velocity = new Vector3(-SpinSpeed, 0, 0);
+            }
+
+            counter -= Time.deltaTime;
+        }
+        yield return new WaitForSeconds(SpinDuration);
+        isAttacking = false;
     }
+
+
 
     private IEnumerator SweepShootCoroutine()
     {
-        throw new NotImplementedException();
+        isAttacking = true;
+        ShootProjectileSweep();
+        yield return new WaitForSeconds(2f);
+        isAttacking = false;
     }
+
 
     private IEnumerator CircularAttackCoroutine()
     {
-        bool shot = false;
-        while (!shot)
-        {
-            ShootProjectile(0);
-            ShootProjectile(4);
-            
-            
-            yield return new WaitForSeconds(1);
-            
-            
+        isAttacking = true; 
 
-            shot = true;
-        }
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
     }
 
-    private void ShootProjectile(int pos)
+    private void ShootProjectileCircular(int pos)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    }
+
+    private void ShootProjectileSweep()
+    {
+        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+
+        switch (multi)
+        {
+            case >0:
+                SpawnProjectiles(1);
+                break;
+            case <0:
+                SpawnProjectiles(0);
+                break;
+        }
+    }
+    
+    private void SpawnProjectiles(int direction)
+    {
+        if (direction == 0)
+        {
+            GameObject bullet1 = Instantiate(Projectile, new Vector3(transform.position.x-2.34f,transform.position.y-1,transform.position.z), transform.rotation);
+            GameObject bullet2 = Instantiate(Projectile, new Vector3(transform.position.x-2.09f,transform.position.y,transform.position.z), transform.rotation);
+            GameObject bullet3 = Instantiate(Projectile, new Vector3(transform.position.x-1.66f,transform.position.y+1,transform.position.z), transform.rotation);
+        }
+        else
+        {
+            GameObject bullet1 = Instantiate(Projectile, new Vector3(transform.position.x-2.34f,transform.position.y-1,transform.position.z), Quaternion.Euler(0, 0, 180));
+            GameObject bullet2 = Instantiate(Projectile, new Vector3(transform.position.x-2.09f,transform.position.y,transform.position.z), Quaternion.Euler(0, 0, 180));
+            GameObject bullet3 = Instantiate(Projectile, new Vector3(transform.position.x-1.66f,transform.position.y+1,transform.position.z), Quaternion.Euler(0, 0, 180));
+        }
     }
 
     private State RollAttack()
     {
         double randomValue = random.NextDouble();
-
-        if (randomValue > 0.80)
-        {
-            return State.CircularAttack;
-        }
-        else if (randomValue > 0.60)
-        {
-            return State.SpinToWin;
-        }
-        else if (randomValue > 0.30)
-        {
-            return State.SweepShoot;
-        }
-
+        if (randomValue > 0.5f) return State.SweepShoot;
         return State.MovingTowardsPlayer;
     }
-
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        _animator.SetInteger("Speed", Math.Abs((int)horizontal));
-        if (!other.CompareTag("Player")) { return; }
-        var multi = other.gameObject.transform.position.x > transform.position.x ? 1 : -1;
-        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
-        Renderer.flipX = multi < 0;
-    }
+    
 
     private void OnCollisionStay2D(Collision2D other)
     {
