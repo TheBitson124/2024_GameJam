@@ -82,18 +82,25 @@ public class Kot_Kauton : Enemy_Script
         }
     }
 
-
+    private IEnumerator WalkSlowly()
+    {
+        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
+        Renderer.flipX = multi < 0;
+        Debug.Log("moving" + transform.position + " " + multi + " " + Speed);
+        yield return new WaitForSeconds(0f);
+    }
     private IEnumerator MoveTowardsPlayerCoroutine()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         _animator.SetInteger("Speed", Math.Abs((int)horizontal));
-
         var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
         transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
         Renderer.flipX = multi < 0;
         float counter = 4;
         while (counter >0)
         {
+            StartCoroutine(WalkSlowly());
             counter -= Time.deltaTime;
         }
         canAttack = true;
@@ -189,8 +196,7 @@ public class Kot_Kauton : Enemy_Script
     private State RollAttack()
     {
         double randomValue = random.NextDouble();
-
-        if (randomValue > 0.5) return State.SweepShoot;
+        if (randomValue > 0.5f) return State.SweepShoot;
         return State.MovingTowardsPlayer;
     }
     

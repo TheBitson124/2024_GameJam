@@ -1,9 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RestartScript : MonoBehaviour {
-    private bool _isDead;
+    private bool _isDead = false;
     private TextMeshProUGUI _textMeshProUGUI;
     void Start()
     {

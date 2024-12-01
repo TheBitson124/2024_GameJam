@@ -169,7 +169,7 @@ MonoBehaviour:
   - {x: 12.11, y: -2}
   - {x: -11.85, y: -2}
   Projectile: {fileID: 0}
-  Speed: 5
+  Speed: 1
   SpinSpeed: 1
   Player: {fileID: 0}
   SpinDuration: 10
