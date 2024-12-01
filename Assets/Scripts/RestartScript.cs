@@ -27,6 +27,10 @@ public class RestartScript : MonoBehaviour {
         }
     }
 
+    private void OnDestroy() {
+        Player_Stats.OnGameOver -= GameOver;
+    }
+
     void LoadMenu() {
         Player_Stats.OnGameOver -= GameOver;
         SceneManager.LoadScene("MainMenu");
