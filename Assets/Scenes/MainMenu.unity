@@ -887,7 +887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1632529931}
-  mainTheme: {fileID: 8300000, guid: b0a3bba840027954098159b41f7da66a, type: 3}
+  mainTheme: {fileID: 8300000, guid: cd672f603a1b6ea41b5456ad9a77233f, type: 3}
+  levelTheme: {fileID: 8300000, guid: 6fe9862fb649dbd459a1a9ae957b668e, type: 3}
+  bossTheme: {fileID: 8300000, guid: 42fea4f75a62ec141b702ca795bca4f1, type: 3}
 --- !u!4 &405327570
 Transform:
   m_ObjectHideFlags: 0
@@ -1540,7 +1542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: f661b37dc0e035c468d5f1075bb9479c, type: 3}
+  m_Texture: {fileID: 2800000, guid: ca364d7669c1cb14cb5561f9d355d093, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
