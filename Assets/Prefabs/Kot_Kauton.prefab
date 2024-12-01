@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3899329848898112716}
   - component: {fileID: 8932530672577640345}
   - component: {fileID: 5494476280728545561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kot_Kauton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -168,11 +168,12 @@ MonoBehaviour:
   SpinBoundaries:
   - {x: 12.11, y: -2}
   - {x: -11.85, y: -2}
-  Projectile: {fileID: 0}
-  Speed: 1
+  Projectile: {fileID: 3767841012102156345, guid: 258bd70df2345a3488a5b36cb2f0304d, type: 3}
+  DefaultSpeed: 8
   SpinSpeed: 1
   Player: {fileID: 0}
-  SpinDuration: 10
+  SpinDuration: 5
+  ActionInterval: 2
 --- !u!95 &5494476280728545561
 Animator:
   serializedVersion: 5

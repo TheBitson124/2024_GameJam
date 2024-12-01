@@ -20,7 +20,8 @@ public class Kot_Kauton : Enemy_Script
     [SerializeField] private List<Vector2> SpinBoundaries = new List<Vector2>() { new(0f, 0f), new(0f, 0f) };
     [SerializeField] private GameObject Projectile;
     
-    [SerializeField] private float Speed;
+    [SerializeField] private float DefaultSpeed;
+    private float Speed;
     [SerializeField] private float SpinSpeed;
     [SerializeField] private GameObject Player;
     [SerializeField] private float SpinDuration;
@@ -42,16 +43,19 @@ public class Kot_Kauton : Enemy_Script
 
     private void Start()
     {
+        CurrentHP = 50;
         random = new Random();
+        Speed = DefaultSpeed;
         _animator = GetComponent<Animator>();
     }
     private void Update()
     {
 
         actionTimer -= Time.deltaTime;
-
+        print(CurrentHP);
         if (actionTimer <= 0f)
         {
+            Speed = DefaultSpeed;
             _animator.SetTrigger("StopSpin");
             actionTimer = ActionInterval;
             currentState = RollAttack(); 
@@ -79,7 +83,7 @@ public class Kot_Kauton : Enemy_Script
         if (Player == null) return;
 
         float step = Speed * Time.deltaTime;
-        Vector2 targetPosition = Player.transform.position;
+        Vector2 targetPosition = new Vector2(Player.transform.position.x,transform.position.y);
         Vector2 currentPosition = transform.position;
 
         float direction = targetPosition.x - currentPosition.x;
@@ -141,8 +145,8 @@ public class Kot_Kauton : Enemy_Script
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                float projectileSpeed = 5f; 
-                rb.velocity = projectileDirection * projectileSpeed;
+                 
+                rb.velocity = projectileDirection * Projectile.GetComponent<Kauton_Projectile_Script>().getSpeed();
             }
         }
         actionTimer = 0f;
@@ -174,15 +178,25 @@ public class Kot_Kauton : Enemy_Script
     
    
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Player")){return;}
+        if (!other.gameObject.CompareTag("CowTonBouncer"))
+        {
+            moveDirection *= -1f;
+            return;
+        }
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
         if (Counter <= 0f)
         {
             other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
             Counter = 1;
         }else Counter -= Time.deltaTime;
-        moveDirection *= -1f;
+
+        
+        
     }
     
     private void FlipSprite(float direction)

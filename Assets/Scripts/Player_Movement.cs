@@ -7,7 +7,7 @@ public class Player_Movement : MonoBehaviour
 {
     private AudioSource audioSource;
     public AudioClip changeGravity;
-    //public AudioClip hurt;
+
     private float horizontal;
     private int speed = 10;
     private bool isFacingRight = true;
