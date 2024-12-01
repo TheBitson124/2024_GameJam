@@ -84,32 +84,40 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator WalkSlowly()
     {
-        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
-        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
-        Renderer.flipX = multi < 0;
-        Debug.Log("moving" + transform.position + " " + multi + " " + Speed);
-        yield return new WaitForSeconds(0f);
+        float walkDuration = 1f;
+        float timed = 0f;
+        while (timed < walkDuration)
+        {
+            if (isAttacking)
+            {
+                break;
+            }
+            var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
+            transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
+            Renderer.flipX = multi < 0;
+            timed += Time.deltaTime;
+            yield return null;
+        }
     }
     private IEnumerator MoveTowardsPlayerCoroutine()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         _animator.SetInteger("Speed", Math.Abs((int)horizontal));
-        var multi = Player.gameObject.transform.position.x > transform.position.x ? 1 : -1;
-        transform.position += new Vector3(multi * Speed * Time.deltaTime, 0, 0);
-        Renderer.flipX = multi < 0;
-        float counter = 4;
+        
+        float counter = 2;
         while (counter >0)
         {
-            StartCoroutine(WalkSlowly());
+            yield return StartCoroutine(WalkSlowly());
             counter -= Time.deltaTime;
         }
         canAttack = true;
         yield return null;
-    }
+    } 
 
     private IEnumerator SpinToWinCoroutine()
     {
         isAttacking = true;
+        _animator.SetTrigger("Spin");
         float counter = SpinDuration;
         bool movingTowardsBoundary1 = (random.NextDouble() > 0.5);
         float boundary1 = SpinBoundaries[0].x;
@@ -131,10 +139,10 @@ public class Kot_Kauton : Enemy_Script
                 movingTowardsBoundary1 = true;
                 velocity = new Vector3(-SpinSpeed, 0, 0);
             }
-
             counter -= Time.deltaTime;
         }
         yield return new WaitForSeconds(SpinDuration);
+        _animator.SetTrigger("Sweep");
         isAttacking = false;
     }
 
@@ -142,6 +150,7 @@ public class Kot_Kauton : Enemy_Script
 
     private IEnumerator SweepShootCoroutine()
     {
+        _animator.SetTrigger("Sweep");
         isAttacking = true;
         ShootProjectileSweep();
         yield return new WaitForSeconds(2f);
@@ -196,7 +205,8 @@ public class Kot_Kauton : Enemy_Script
     private State RollAttack()
     {
         double randomValue = random.NextDouble();
-        if (randomValue > 0.5f) return State.SweepShoot;
+        if (randomValue > 0.8f) return State.SweepShoot;
+        else if (randomValue > 0.7f) return State.SpinToWin;
         return State.MovingTowardsPlayer;
     }
     
