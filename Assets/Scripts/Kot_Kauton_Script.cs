@@ -210,4 +210,14 @@ public class Kot_Kauton : Enemy_Script
             transform.localScale = scale;
         }
     }
+    
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (!other.gameObject.CompareTag("Player")){return;}
+        if (Counter <= 0f)
+        {
+            other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
+            Counter = 1;
+        }else Counter -= Time.deltaTime;
+    }
 }
