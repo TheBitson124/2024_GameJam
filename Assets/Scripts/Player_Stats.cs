@@ -24,6 +24,7 @@ public class Player_Stats : MonoBehaviour
     
     private void Start()
     {
+        Score = 0;
         CurrentHP = MaxHP;
         CanSwapGravity = false;
         Weapon2Unlock = false;
