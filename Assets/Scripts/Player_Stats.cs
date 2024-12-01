@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
@@ -9,6 +10,9 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private AudioClip dmgAudio;
     private bool CanSwapGravity;
     private bool Weapon2Unlock;
+
+    [SerializeField]
+    private GameObject OSM;
     [SerializeField] private int MaxHP;
     [SerializeField] private FadeIn _fadeIn;
     private int CurrentHP;
@@ -79,6 +83,7 @@ public class Player_Stats : MonoBehaviour
             OnGameOver?.Invoke();
             _fadeIn.StartAction();
             Destroy(gameObject);
+            OSM.GetComponent<OneSceneManager>().resetLevel();
             //GameOver
             
         }
