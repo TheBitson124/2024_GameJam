@@ -31,7 +31,7 @@ namespace DefaultNamespace
                 {
                     SceneManager.LoadScene("Tutorial");
                 }
-                else if(lvl == 2)
+                else if(lvl == 3)
                 {
                     SceneManager.LoadScene("BossRoom");
                 }
