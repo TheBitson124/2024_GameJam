@@ -76,10 +76,7 @@ public class Player_Stats : MonoBehaviour
             //GameOver
             
         }
-<<<<<<< Updated upstream
-=======
-        //Debug.Log(CurrentHP);
->>>>>>> Stashed changes
+
     }
 
     public void Heal()
