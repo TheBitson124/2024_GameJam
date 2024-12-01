@@ -17,7 +17,7 @@ public class HPUIScript : MonoBehaviour
     // Update is called once per frame
     private void UpdateHP(int newHP) {
         for (int i = 0; i < llby.Length; i++) {
-            if (i <= newHP) {
+            if (i < newHP) {
                 llby[i].color = Color.white;
             }
             else {
