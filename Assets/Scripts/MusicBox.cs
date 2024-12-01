@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class MusicBox : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip mainTheme;
+    public AudioClip mainTheme, levelTheme, bossTheme;
     public static float vol = 1f;
     private static MusicBox instance;
     private void Start()
@@ -54,6 +54,9 @@ public class MusicBox : MonoBehaviour
         switch (currentSceneName)
         {
             default:
+                PlayMusic(levelTheme);
+                break;
+            case "MainMenu":
                 PlayMusic(mainTheme);
                 break;
         }
