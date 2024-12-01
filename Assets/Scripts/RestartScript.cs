@@ -20,7 +20,6 @@ public class RestartScript : MonoBehaviour {
 
     private void Update() {
         if (_isDead) {
-            Debug.Log("sram");
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 LoadMenu();

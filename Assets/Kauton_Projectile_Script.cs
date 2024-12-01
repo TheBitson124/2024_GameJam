@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Kauton_Projectile_Script : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int Damage;
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private float speed;
+    private void Awake()
     {
+        GameObject player = GameObject.FindWithTag("Player");
+        Vector2 direction = (player.transform.position - transform.position).normalized;
         
+        _rb.velocity = direction * speed;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
