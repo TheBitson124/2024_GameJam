@@ -11,7 +11,6 @@ public class GunUnlock : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player_Stats>().setWeaponUnlock(true);
-            playerStats.GiveGravitySwap();
             Destroy(gameObject);
         }
     }
