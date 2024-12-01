@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player_Stats : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dmgAudio;
     private bool CanSwapGravity;
     private bool Weapon2Unlock;
     [SerializeField] private int MaxHP;
@@ -67,6 +69,8 @@ public class Player_Stats : MonoBehaviour
     public void DamageNaMorde(int damage)
     {
         CurrentHP -= damage;
+        audioSource.clip = dmgAudio;
+        audioSource.Play();
         OnHPChanged?.Invoke(CurrentHP);
         StartCoroutine(ShowRed());
         if (CurrentHP <= 0)

@@ -14,7 +14,11 @@ public class Kauton_Projectile_Script : MonoBehaviour
         
         _rb.velocity = direction * speed;
     }
-    
+
+    public float getSpeed()
+    {
+        return speed;
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
