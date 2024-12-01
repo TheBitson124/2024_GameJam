@@ -5,35 +5,38 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] private int Damage;
-    [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private float speed;
-    
+    [SerializeField] protected float Speed;
+    [SerializeField] protected float Damage;
 
-    private Transform playerTransform;
+    protected Rigidbody2D Rb;
 
     private void Awake()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerTransform = player.transform;
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            _rb.velocity = direction * speed;
-        }
+        Rb = GetComponent<Rigidbody2D>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Rb.velocity = transform.right * Speed;
+        
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
     
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Ground"))
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<Player_Stats>().DamageNaMorde(Damage);
-            }
             Destroy(gameObject);
         }
-    }
-    
+
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Player_Stats>().DamageNaMorde(1);
+        }
+    } 
 }
