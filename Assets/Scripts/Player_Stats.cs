@@ -70,12 +70,12 @@ public class Player_Stats : MonoBehaviour
         StartCoroutine(ShowRed());
         if (CurrentHP <= 0)
         {
+            OnHPChanged?.Invoke(0);
             OnGameOver?.Invoke();
             Destroy(gameObject);
             //GameOver
             
         }
-        Debug.Log(CurrentHP);
     }
 
     public void Heal()
