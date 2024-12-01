@@ -2,9 +2,10 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class RestartScript : MonoBehaviour {
-    private bool _isDead = false;
+    public bool isDead = false;
     private TextMeshProUGUI _textMeshProUGUI;
     void Start()
     {
@@ -14,12 +15,12 @@ public class RestartScript : MonoBehaviour {
     }
     
     void GameOver() {
-        _isDead = true;
+        isDead = true;
         _textMeshProUGUI.enabled = true;
     }
 
     private void Update() {
-        if (_isDead) {
+        if (isDead) {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 LoadMenu();
