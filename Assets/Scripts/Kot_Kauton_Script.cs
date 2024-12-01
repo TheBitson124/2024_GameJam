@@ -145,8 +145,8 @@ public class Kot_Kauton : Enemy_Script
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                float projectileSpeed = 5f; 
-                rb.velocity = projectileDirection * projectileSpeed;
+                 
+                rb.velocity = projectileDirection * Projectile.GetComponent<Kauton_Projectile_Script>().getSpeed();
             }
         }
         actionTimer = 0f;
