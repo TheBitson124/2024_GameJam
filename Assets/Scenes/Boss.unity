@@ -525,6 +525,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 448208051973137835, guid: 33442da3e2288fd4ead36d87dbc58b0f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1047010330}
     - target: {fileID: 4082332252995188379, guid: 33442da3e2288fd4ead36d87dbc58b0f, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1934,7 +1938,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
