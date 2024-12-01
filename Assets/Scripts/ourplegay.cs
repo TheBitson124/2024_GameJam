@@ -32,6 +32,7 @@ public class ourplegay : Enemy_Script
 
         if (canShoot)
         {
+            _animator.SetTrigger("attack");
             canShoot = false;
             if (multi > 0)
             {
@@ -66,7 +67,7 @@ public class ourplegay : Enemy_Script
     
     private void Shoot(int dir)
     {
-
+        
         switch (dir)
         {
             case 0:
