@@ -30,15 +30,17 @@ public class FadeIn : MonoBehaviour
 
     private IEnumerator StartFadeIn()
     {
+        fadeDuration = gameover.length;
         float elapsedTime = 0f;
-        audioSource.PlayOneShot(gameover, 0.7F);
+        audioSource.PlayOneShot(gameover, 0.5F);
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
             canvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
             yield return null;
         }
-
+        
         canvasGroup.alpha = 1f;
+        canvasGroup.alpha = 0f;
     }
 }
