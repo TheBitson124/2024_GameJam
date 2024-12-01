@@ -87,8 +87,9 @@ public class Player_Stats : MonoBehaviour
             _fadeIn.StartAction();
             Destroy(gameObject);
             OSM.GetComponent<OneSceneManager>().resetLevel();
+            PlayerPrefs.SetInt("Score", 0);
             //GameOver
-            
+
         }
 
         //Debug.Log(CurrentHP);
