@@ -20,7 +20,8 @@ public class Kot_Kauton : Enemy_Script
     [SerializeField] private List<Vector2> SpinBoundaries = new List<Vector2>() { new(0f, 0f), new(0f, 0f) };
     [SerializeField] private GameObject Projectile;
     
-    [SerializeField] private float Speed;
+    [SerializeField] private float DefaultSpeed;
+    private float Speed;
     [SerializeField] private float SpinSpeed;
     [SerializeField] private GameObject Player;
     [SerializeField] private float SpinDuration;
@@ -43,6 +44,7 @@ public class Kot_Kauton : Enemy_Script
     private void Start()
     {
         random = new Random();
+        Speed = DefaultSpeed;
         _animator = GetComponent<Animator>();
     }
     private void Update()
@@ -52,6 +54,7 @@ public class Kot_Kauton : Enemy_Script
 
         if (actionTimer <= 0f)
         {
+            Speed = DefaultSpeed;
             _animator.SetTrigger("StopSpin");
             actionTimer = ActionInterval;
             currentState = RollAttack(); 
