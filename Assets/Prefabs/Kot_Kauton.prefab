@@ -170,7 +170,7 @@ MonoBehaviour:
   - {x: -11.85, y: -2}
   Projectile: {fileID: 0}
   Speed: 5
-  SpinSpeed: 10
+  SpinSpeed: 1
   Player: {fileID: 0}
   SpinDuration: 10
 --- !u!95 &5494476280728545561
