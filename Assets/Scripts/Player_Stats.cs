@@ -34,6 +34,7 @@ public class Player_Stats : MonoBehaviour
 
     public bool getWeaponUnlock()
     {
+        PlayerPrefs.SetInt("Weapon2", 1);
         return Weapon2Unlock;
     }
 
@@ -83,6 +84,7 @@ public class Player_Stats : MonoBehaviour
         StartCoroutine(ShowRed());
         if (CurrentHP <= 0)
         {
+            PlayerPrefs.SetInt("Weapon2", 0);
             OnHPChanged?.Invoke(0);
             OnGameOver?.Invoke();
             _fadeIn.StartAction();

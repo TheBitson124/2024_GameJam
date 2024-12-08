@@ -10,6 +10,7 @@ public class GunUnlock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("Weapon2", 1);
             other.GetComponent<Player_Stats>().setWeaponUnlock(true);
             Destroy(gameObject);
         }
