@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Stats : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class Player_Stats : MonoBehaviour
     private GameObject OSM;
     [SerializeField] private int MaxHP;
     [SerializeField] private FadeIn _fadeIn;
+    [SerializeField] private TextMeshProUGUI weaponText;
+    [SerializeField] private TextMeshProUGUI invertText;
     private int CurrentHP;
     private int Score;
 
@@ -40,6 +44,7 @@ public class Player_Stats : MonoBehaviour
 
     public void setWeaponUnlock(bool setValue)
     {
+        weaponText.gameObject.SetActive(setValue);
         Weapon2Unlock = setValue;
     }
     public void IncreaseScore(int i)
@@ -57,6 +62,10 @@ public class Player_Stats : MonoBehaviour
     public void GiveGravitySwap()
     {
         CanSwapGravity = true;
+        if (SceneManager.GetActiveScene().name != "Transition")
+        {
+            invertText.gameObject.SetActive(true);
+        }
     }
     
     public bool getSwap()
@@ -87,10 +96,12 @@ public class Player_Stats : MonoBehaviour
             PlayerPrefs.SetInt("Weapon2", 0);
             OnHPChanged?.Invoke(0);
             OnGameOver?.Invoke();
-            _fadeIn.StartAction();
+            
+            //_fadeIn.StartAction();
             Destroy(gameObject);
             OSM.GetComponent<OneSceneManager>().resetLevel();
             PlayerPrefs.SetInt("Score", 0);
+            SceneManager.LoadScene("DeathScreen");
             //GameOver
 
         }

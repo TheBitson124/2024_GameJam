@@ -9,20 +9,6 @@ public class FadeIn : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip gameover;
 
-    private void Awake()
-    {
-        if (canvasGroup == null)
-        {
-            canvasGroup = GetComponent<CanvasGroup>();
-        }
-    }
-
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        canvasGroup.alpha = 0f;
-    }
-
     public void StartAction()
     {
         StartCoroutine(StartFadeIn());
@@ -30,6 +16,7 @@ public class FadeIn : MonoBehaviour
 
     private IEnumerator StartFadeIn()
     {
+        audioSource = GetComponent<AudioSource>();
         float elapsedTime = 0f;
         audioSource.PlayOneShot(gameover, 0.7F);
         while (elapsedTime < fadeDuration)

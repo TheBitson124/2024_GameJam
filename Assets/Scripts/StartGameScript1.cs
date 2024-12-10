@@ -8,6 +8,10 @@ public class StartGameScript : MonoBehaviour {
         {
             LoadFirstLevel();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     
     private void LoadFirstLevel()
